@@ -39,3 +39,12 @@ try:
     from pika.adapters.libev_connection import LibevConnection
 except ImportError:
     LibevConnection = None
+
+try:
+    import asyncio  # better than checking explicitly for CPython >= 3.4
+    try:
+        from pika.adapters.asyncio_connection import AsyncioProtocolConnection
+    except ImportError:
+        AsyncioProtocolConnection = None
+except ImportError:
+    pass
